@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To do list</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <p1>Todo List</p1>
+    <div class="container">
+        <h2>To-Do List</h2>
+        <input type="text" id="todoInput" placeholder="Enter a task">
+        <button id="addTodoBtn">Add Task</button>
+        <table>
+            <thead>
+                <div>
+                    <tr>
+                        <th>Task</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </div>
+            </thead>
+            <tbody id="todoTableBody">
+                <div>
+                    <!-- To-Do items will be added here -->
+                    <tr>
+                        <td>Task 1</td>
+                        <td>Status 1</td>
+                        <td><button>Complete</button></td>
+                    </tr>
+                </div>
+            </tbody>
+        </table>
+    </div>
+<script src="./script.js"></script>
 </body>
 </html>
