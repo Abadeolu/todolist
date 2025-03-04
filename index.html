@@ -9,31 +9,30 @@
 <body>
     <div class="container">
         <h2>To-Do List</h2>
-        <input type="text" id="todoInput" placeholder="Enter a task">
+        <div><input type="text" id="task" placeholder="Enter a task"></div>
+        <div><input type="text" id="description" placeholder="Describe your task"></div>
         <button id="addTodoBtn">Add Task</button>
         <table>
-            <thead>
-                <div>
-                    <tr>
-                        <th>Task</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </div>
+            <thead id="to_table_head">
+                <tr>
+                    <th>Task</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
             </thead>
-            <tbody id="todoTableBody">
-                <div>
-                    <!-- /* To-Do items will be added here */ -->
-                    <tr>
-                        <td>Task 1</td>
-                        <td>Status 1</td>
-                        <td><button>Complete</button></td>
-                    </tr>
-                </div>
+            <tbody id="todo_table_body">
+                <!-- To-Do items will be added dynamically here -->
+                <tr>
+                    <td>Task 1</td>
+                    <td>Description 1</td>
+                    <td>Status 1</td>
+                    <td><button>Complete</button></td>
+                </tr>
             </tbody>
         </table>
     </div>
-        
-<script src="./script.js"></script>
+
+    <script src="./script.js"></script>
 </body>
 </html>
