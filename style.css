@@ -4,6 +4,10 @@ body {
     text-align: center;
     padding: 20px;
 }
+
+h3{
+    font-family: Arial, sans-serif;
+}
 .container {
     max-width: 80%;
     margin: auto;
@@ -42,6 +46,4 @@ button {
     border: none;
     cursor: pointer;
 }
-
-
 
