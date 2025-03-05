@@ -1,43 +1,77 @@
-// declare todo container
-let todo_array = [
-    {
-        name: "name",
-        description: "description",
-        status: "pending"
-    }
-]
+//store todo list
+const todoList =[]
 
-// select the input fields and html elements
-let todo_name_field = document.getElementById("task")
-let todo_description_field = document.getElementById("description")
-let add_todo_btn = document.querySelector("addTodoBtn")
-//select the table body where we will add todo
-let todo_table_body = document.querySelector("todo_table_body")
+//select elements from dom
+const taskInput = document.querySelector("#task");
+const descriptionInput = document.querySelector("#description");
+const addTodoButton = document.querySelector("#addTodoBtn");
+const todoTableBody = document.querySelector("#todo_table_body");
 
-//create add todo function
-let add_todo = function(){
-    //get values from input fields
-    todo_name = todo_name_field.value.trim()
-    todo_description = todo_description_field.value.trim()
-    //check if task is empty
-    if (todo_name === ""){
-        alert("Please enter a task name")
-        return
-    }
-    //create todo object
-    let newTodo = {
-        name: todo_name,
-        description: todo_description,
-        status: false //means not completed
+// Function to add a new to-do
+function addTodo() {
+    // Get and trim input values
+    const taskName = taskInput.value.trim();
+    const taskDescription = descriptionInput.value.trim();
+
+    // Validate input fields
+    if (taskName === "" || taskDescription === "") {
+        alert("Please enter both task name and description.");
+        return;
     }
 
-    todo_array.push(newTodo)
-    //clear input field
-    todo_name_field = ""
-    todo_description_field = ""
-    //update the ui
+    // Create new to-do object
+    const newTodo = {
+        name: taskName,
+        description: taskDescription,
+        status: false, // false means "not completed"
+    };
 
-    //function to render todos into the table
-    render_todo()
+    // Add task to array
+    todoList.push(newTodo);
+
+    // Clear input fields
+    taskInput.value = "";
+    descriptionInput.value = "";
+
+    // Re-render the table to show the new task
+    renderTodos();
 }
 
+// Function to render the to-do list in the table
+function renderTodos() {
+    // Clear the table before re-rendering
+    todoTableBody.innerHTML = "";
+
+    // Loop through the todoList array and create rows
+    todoList.forEach((todo, index) => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${todo.name}</td>
+            <td>${todo.description}</td>
+            <td>${todo.status ? "Completed" : "Pending"}</td>
+            <td>
+                <button onclick="completeTodo(${index})">Complete</button>
+                <button onclick="deleteTodo(${index})">Delete</button>
+            </td>
+        `;
+
+        // Append the row to the table body
+        todoTableBody.appendChild(row);
+    });
+}
+
+// Function to mark a task as completed
+function completeTodo(index) {
+    todoList[index].status = true;
+    renderTodos(); // Update UI
+}
+
+// Function to delete a task
+function deleteTodo(index) {
+    todoList.splice(index, 1); // Remove task from array
+    renderTodos(); // Update UI
+}
+
+// Attach event listener to the add button
+addTodoButton.addEventListener("click", addTodo);
